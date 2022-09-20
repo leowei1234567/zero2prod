@@ -5,6 +5,7 @@ pub struct Settings {
     pub database: DatabaseSettings,
     pub application_port: u16,
 }
+
 #[derive(serde::Deserialize, Debug)]
 pub struct DatabaseSettings {
     pub username: String,
