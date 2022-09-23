@@ -1,4 +1,6 @@
-application_port: 8090
+#! configuration/base.yaml
+application: 
+  port: 8090
 database:
   host: "127.0.0.1"
   port: 5432
