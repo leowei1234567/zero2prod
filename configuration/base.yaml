@@ -7,3 +7,7 @@ database:
   username: "postgres"
   password: "password"
   database_name: "newsletter"
+email_client:
+  base_url: "https://api.postmarkapp.com"
+  sender_email: "weijixing@pmlabs.com.cn"
+  authorization_token: "my-secret-token"
