@@ -111,13 +111,13 @@ mod tests {
     }
     /// Get a test instance of `EmailClient`.
     fn email_client(base_url: String) -> EmailClient {
-        EmailClient::new(email(),base_url, Secret::new(Faker.fake()))
+        EmailClient::new(email(), base_url, Secret::new(Faker.fake()))
     }
 
     #[tokio::test]
     async fn send_email_fails_if_server_timeout() {
         let mock_server = MockServer::start().await;
-    
+
         let email_client = email_client(mock_server.uri());
 
         let response = ResponseTemplate::new(200)
@@ -140,7 +140,7 @@ mod tests {
     #[tokio::test]
     async fn send_email_fails_if_the_server_returns_500() {
         let mock_server = MockServer::start().await;
-    
+
         let email_client = email_client(mock_server.uri());
 
         Mock::given(any())
@@ -161,7 +161,7 @@ mod tests {
     async fn send_email_succeeds_if_the_server_returns_200() {
         // Arrange
         let mock_server = MockServer::start().await;
-    
+
         let email_client = email_client(mock_server.uri());
 
         Mock::given(header_exists("X-Postmark-Server-Token"))
