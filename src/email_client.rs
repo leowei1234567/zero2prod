@@ -15,9 +15,10 @@ impl EmailClient {
         sender: SubscriberEmail,
         base_url: String,
         authorization_token: Secret<String>,
+        timeout: u64,
     ) -> Self {
         let http_client = Client::builder()
-            .timeout(std::time::Duration::from_secs(10))
+            .timeout(std::time::Duration::from_millis(timeout))
             .build()
             .unwrap();
         EmailClient {
@@ -39,7 +40,7 @@ impl EmailClient {
         let request_body = SendEmailRequest {
             from: self.sender.as_ref(),
             to: recipient.as_ref(),
-            subject: subject,
+            subject,
             html_body: html_content,
             text_body: text_content,
         };
@@ -111,7 +112,7 @@ mod tests {
     }
     /// Get a test instance of `EmailClient`.
     fn email_client(base_url: String) -> EmailClient {
-        EmailClient::new(email(), base_url, Secret::new(Faker.fake()))
+        EmailClient::new(email(), base_url, Secret::new(Faker.fake()), 200)
     }
 
     #[tokio::test]

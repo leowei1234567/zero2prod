@@ -21,6 +21,7 @@ async fn main() -> std::io::Result<()> {
         sender,
         configuration.email_client.base_url,
         configuration.email_client.authorization_token,
+        configuration.email_client.timeout,
     );
 
     let address = format!(

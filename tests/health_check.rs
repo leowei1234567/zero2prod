@@ -143,6 +143,7 @@ async fn spawn_app() -> TestApp {
         sender_email,
         configuration.email_client.base_url,
         configuration.email_client.authorization_token,
+        configuration.email_client.timeout,
     );
     let server =
         run(listener, connection_pool.clone(), email_client).expect("Failed to bind address");
